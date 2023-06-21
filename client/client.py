@@ -1,6 +1,7 @@
 import grpc
-import calculator_pb2
-import calculator_pb2_grpc
+
+from calculator_pb2 import AddRequest, AddResponse, SubtractRequest, SubtractResponse, MultiplyRequest, MultiplyResponse, DivideRequest, DivideResponse
+from calculator_pb2_grpc import CalculatorStub
 
 
 def run():
@@ -24,10 +25,11 @@ def run():
     # stub = calculator_pb2_grpc.CalculatorStub(channel)
 
     channel = grpc.insecure_channel('172.17.0.2:50051')
-    stub = calculator_pb2_grpc.CalculatorStub(channel)
+    stub = CalculatorStub(channel)
     try:
         # gRPCサーバーのメソッドを呼び出す例
-        response = stub.Divide(calculator_pb2.AddRequest(a=10, b=0))
+        request = DivideRequest(a=10, b=0)
+        response: DivideResponse = stub.Divide(request)
         print("Response:", response.result)
         print("Type:", type(response))
         print("All:", response)
