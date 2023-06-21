@@ -8,19 +8,19 @@
 サーバーのディレクトリに移動
 
 ```
-    cd server
+cd server
 ```
 
 ビルド
 
 ```
-    docker build -t grpc-python-server .
+docker build -t grpc-python-server .
 ```
 
 サーバー起動
 
 ```
-    docker run -p 50051:50051 grpc-python-server
+docker run -p 50051:50051 grpc-python-server
 ```
 
 ## クライアント（呼び出す側）
@@ -28,17 +28,17 @@
 クライアントのディレクトリに移動
 
 ```
-    cd client
+cd client
 ```
 
 ビルド
 
 ```
-    docker build -t grpc-python-client .
+docker build -t grpc-python-client .
 ```
 
 サーバー起動
 
 ```
-    docker run grpc-python-client
+docker run grpc-python-client
 ```

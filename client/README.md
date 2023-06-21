@@ -3,11 +3,11 @@
 ビルド
 
 ```
-    docker build -t grpc-python-client .
+docker build -t grpc-python-client .
 ```
 
 サーバー起動
 
 ```
-    docker run grpc-python-client
+docker run grpc-python-client
 ```
