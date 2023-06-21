@@ -1,5 +1,13 @@
 # サーバー（呼ばれる側）
 
+必要なものをインストールする
+
+```
+brew install protobuf
+pip install grpcio
+pip install grpcio-tools
+```
+
 ビルド
 
 ```
