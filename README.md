@@ -1,11 +1,11 @@
-# マイクロサービス化を検討する
+# Consider microservices.
 
-サービスを徐々に分離する。または新規作成。
-マイクロサービスへ移行するための調査 Repository
+Gradually isolate services. Or create a new one.
+Investigate migrating to microservices Repository
 
-## Protoc をインストール
+## Install Protoc
 
-必要なものをインストールする
+Install what you need.
 
 ```
 brew install protobuf
@@ -13,62 +13,77 @@ pip install grpcio
 pip install grpcio-tools
 ```
 
-## サーバー（呼ばれる側）
+## Server (the called party)
 
-サーバーのディレクトリに移動
+Go to the server directory.
 
 ```
+
 cd server
-```
-
-Python 用のファイルを出力する
 
 ```
-python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./proto/calculator.proto
-```
 
-ビルド
+Output files for Python.
 
 ```
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. . /proto/calculator.proto
+
+```
+
+Build.
+
+```
+
 docker build -t grpc-python-server .
-```
-
-サーバー起動
 
 ```
+
+Start the server.
+
+```
+
 docker run -p 50051:50051 grpc-python-server
-```
-
-## クライアント（呼び出す側）
-
-クライアントのディレクトリに移動
 
 ```
+
+## Client (caller)
+
+Go to the client directory.
+
+```
+
 cd client
 ```
 
-Python 用のファイルを出力する
-
-```
-python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./proto/calculator.proto
-```
-
-サーバーのコンテナ IP Address を確認
-**client.py の 172.17.0.2 を確認した IP Address に修正**
-
-```
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' コンテナID
+Output files for Python.
 
 ```
 
-ビルド
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. . /proto/calculator.proto
 
 ```
+
+Check the container IP address of the server
+**Correct 172.17.0.2 in client.py to the confirmed IP address**.
+
+```
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container ID
+
+```
+
+build
+
+```
+
 docker build -t grpc-python-client .
-```
-
-サーバー起動
 
 ```
+
+Start the server.
+
+```
+
 docker run grpc-python-client
+
 ```
