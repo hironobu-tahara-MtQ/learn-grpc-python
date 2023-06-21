@@ -29,6 +29,8 @@ def run():
         # gRPCサーバーのメソッドを呼び出す例
         response = stub.Divide(calculator_pb2.AddRequest(a=10, b=0))
         print("Response:", response.result)
+        print("Type:", type(response))
+        print("All:", response)
     except grpc.RpcError as e:
         print("共通のエラーハンドリング:", e)
 
