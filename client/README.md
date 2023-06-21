@@ -14,6 +14,14 @@ Python 用のファイルを出力する
 python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./proto/calculator.proto
 ```
 
+サーバーのコンテナ IP Address を確認
+**client.py の 172.17.0.2 を確認した IP Address に修正**
+
+```
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' コンテナID
+
+```
+
 ビルド
 
 ```
